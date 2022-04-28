@@ -7,13 +7,16 @@ namespace Core.Hero
 {
     public class RagdollActivator : MonoBehaviour
     {
+        [SerializeField] private CharacterController _characterController;
         [SerializeField] private Transform _rootBone;
         [SerializeField] private Transform _boss;
+        [SerializeField] private Transform _forcePoint;
         public static RagdollActivator Instance;
         public Animator _animator;
-        public float _lerp;
+        [SerializeField] private float _lerp;
+        [SerializeField] private float _power;
         public Rigidbody _mainRigidbody;
-        public Rigidbody[] AllRigidbodies;
+        public Rigidbody[] _allRigidbodies;
         public Collider _collider;
 
         private Vector3[] _cachedBonesPositions;
@@ -31,9 +34,9 @@ namespace Core.Hero
         {
             Instance = this;
 
-            for (int i = 0; i < AllRigidbodies.Length; i++)
+            for (int i = 0; i < _allRigidbodies.Length; i++)
             {
-                AllRigidbodies[i].isKinematic = true;
+                _allRigidbodies[i].isKinematic = true;
             }
         }
 
@@ -42,29 +45,32 @@ namespace Core.Hero
             if (_isLerping == false)
                 return;
 
-            for (int i = 0; i < AllRigidbodies.Length; i++)
+            for (int i = 0; i < _allRigidbodies.Length; i++)
             {
-                AllRigidbodies[i].transform.localPosition = Vector3.Lerp(AllRigidbodies[i].transform.localPosition,
+                _allRigidbodies[i].transform.localPosition = Vector3.Lerp(_allRigidbodies[i].transform.localPosition,
                     _cachedBonesPositions[i], _lerp * Time.deltaTime);
 
-                AllRigidbodies[i].transform.localEulerAngles = Vector3.Lerp(
-                    AllRigidbodies[i].transform.localEulerAngles,
+                _allRigidbodies[i].transform.localEulerAngles = Vector3.Lerp(
+                    _allRigidbodies[i].transform.localEulerAngles,
                     _cachedBonesAngles[i], _lerp * Time.deltaTime);
             }
         }
-
+        
         [ContextMenu("MakePhysical")]
-        public void ActivateRagdollAndPushWithForce(float force)
+        public void MakePhysical()
         {
-            // _mainRigidbody.AddForce(_boss.transform.forward * force, ForceMode.Impulse);
+            ActivateRagdollAndPushWithForce(new Vector3(0, 1, -1), _power);
+        }
 
+        public void ActivateRagdollAndPushWithForce(Vector3 direction, float force)
+        {
             _animator.enabled = false;
-            _collider.gameObject.SetActive(false);
-            _input.InputOn = false;
+            _characterController.enabled = false;
 
-            for (int i = 0; i < AllRigidbodies.Length; i++)
+            for (int i = 0; i < _allRigidbodies.Length; i++)
             {
-                AllRigidbodies[i].isKinematic = false;
+                _allRigidbodies[i].isKinematic = false;
+                _allRigidbodies[i].AddForceAtPosition(new Vector3(0, 1, -1) * force, _forcePoint.position, ForceMode.Impulse);
             }
 
             StartCoroutine(ReturnFromRagdollToIdle());
@@ -72,12 +78,12 @@ namespace Core.Hero
 
         private IEnumerator ReturnFromRagdollToIdle()
         {
-            _cachedBonesPositions = new Vector3[AllRigidbodies.Length];
-            _cachedBonesAngles = new Vector3[AllRigidbodies.Length];
-            for (int i = 0; i < AllRigidbodies.Length; i++)
+            _cachedBonesPositions = new Vector3[_allRigidbodies.Length];
+            _cachedBonesAngles = new Vector3[_allRigidbodies.Length];
+            for (int i = 0; i < _allRigidbodies.Length; i++)
             {
-                _cachedBonesPositions[i] = AllRigidbodies[i].transform.localPosition;
-                _cachedBonesAngles[i] = AllRigidbodies[i].transform.localEulerAngles;
+                _cachedBonesPositions[i] = _allRigidbodies[i].transform.localPosition;
+                _cachedBonesAngles[i] = _allRigidbodies[i].transform.localEulerAngles;
             }
 
             yield return new WaitForSeconds(2);
@@ -89,9 +95,9 @@ namespace Core.Hero
 
             _animator.enabled = true;
 
-            for (int i = 0; i < AllRigidbodies.Length; i++)
+            for (int i = 0; i < _allRigidbodies.Length; i++)
             {
-                AllRigidbodies[i].isKinematic = true;
+                _allRigidbodies[i].isKinematic = true;
             }
 
             _isLerping = true;

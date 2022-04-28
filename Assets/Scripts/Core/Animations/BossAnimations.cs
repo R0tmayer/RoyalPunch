@@ -57,8 +57,7 @@ namespace Core.Animations
         {
             ResetAnimations();
             _animator.SetTrigger(_superPunch);
-            PushHero();
-            StartCoroutine(SetIdleStateAfterTime());
+            // StartCoroutine(SetIdleStateAfterTime());
         }
 
         public void SuperConeAnimation()
@@ -68,7 +67,7 @@ namespace Core.Animations
 
         private void PushHero()
         {
-            RagdollActivator.Instance.ActivateRagdollAndPushWithForce(2);
+            RagdollActivator.Instance.ActivateRagdollAndPushWithForce(new Vector3(0, 1, -1), 10);
             _heroAnimations.IsPunching = false;
         }
 
