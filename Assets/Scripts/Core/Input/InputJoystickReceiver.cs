@@ -13,8 +13,15 @@ namespace Core.Input
         private Vector2 _initPos;
 
         private float _maxDistance;
+        private Vector2 _direction;
 
-        public Vector2 Direction { get; private set; }
+        public bool InputOn { get; set; } = true;
+
+        public Vector2 Direction
+        {
+            get => InputOn ? _direction : Vector2.zero;
+            private set => _direction = value;
+        }
 
         private void Awake()
         {

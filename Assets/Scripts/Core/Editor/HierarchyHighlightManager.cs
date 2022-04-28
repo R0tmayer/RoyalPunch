@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using Core.Utils;
 using UnityEngine;
 using UnityEditor;
-
-using Scripts.Utility;
 
 namespace Assets.Editor
 {
