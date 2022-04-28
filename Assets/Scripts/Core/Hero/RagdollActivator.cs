@@ -56,7 +56,7 @@ namespace Core.Hero
         [ContextMenu("MakePhysical")]
         public void ActivateRagdollAndPushWithForce(float force)
         {
-            _mainRigidbody.AddForce(_boss.transform.forward * force, ForceMode.Impulse);
+            // _mainRigidbody.AddForce(_boss.transform.forward * force, ForceMode.Impulse);
 
             _animator.enabled = false;
             _collider.gameObject.SetActive(false);
@@ -84,7 +84,7 @@ namespace Core.Hero
 
             // var parent = _rootBone.parent;
             // _rootBone.parent = null;
-            // transform.position = _rootBone.position;
+            transform.position = _rootBone.position;
             // _rootBone.SetParent(parent);
 
             _animator.enabled = true;

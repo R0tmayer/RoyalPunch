@@ -7,7 +7,7 @@ namespace Core.Animations
     public class HeroAnimations : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
-        
+
         private InputJoystickReceiver _input;
         private static readonly int _runForward = Animator.StringToHash("RunForward");
         private static readonly int _runBackward = Animator.StringToHash("RunBackward");
@@ -15,6 +15,8 @@ namespace Core.Animations
         private static readonly int _runRight = Animator.StringToHash("RunRight");
         private static readonly int _idle = Animator.StringToHash("Idle");
         private static readonly int _punching = Animator.StringToHash("Punching");
+        private static readonly int _xDirection = Animator.StringToHash("XDirection");
+        private static readonly int _yDirection = Animator.StringToHash("YDirection");
 
         public bool IsPunching { get; set; }
 
@@ -26,20 +28,16 @@ namespace Core.Animations
         private void Update()
         {
             ResetAnimations();
-            
-            if(IsPunching)
-                _animator.Play(_punching);
-            
-            if (_input.Direction == Vector2.zero)
-            {
-                _animator.SetBool(_idle,true);
-                return;
-            }
 
-            if (Math.Abs(_input.Direction.x) > Math.Abs(_input.Direction.y))
-                _animator.SetBool(_input.Direction.x < 0 ? _runRight : _runLeft, true);
+            if (IsPunching)
+                _animator.Play(_punching);
+
+            _animator.SetFloat(_yDirection, _input.Direction.y);
+
+            if (_input.Direction.y < 0)
+                _animator.SetFloat(_xDirection, -_input.Direction.x);
             else
-                _animator.SetBool(_input.Direction.y < 0 ? _runBackward : _runForward, true);
+                _animator.SetFloat(_xDirection, _input.Direction.x);
         }
 
         private void ResetAnimations()
