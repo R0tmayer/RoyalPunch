@@ -17,11 +17,7 @@ namespace Core.CustomInput
 
         public bool Enabled { get; set; } = true;
 
-        public Vector2 Direction
-        {
-            get => Enabled ? _direction : Vector2.zero;
-            private set => _direction = value;
-        }
+        public Vector2 Direction => Enabled ? _direction : Vector2.zero;
 
         private void Awake()
         {
@@ -33,7 +29,7 @@ namespace Core.CustomInput
             if (eventData.pointerId != _currentFinger) return;
             Vector2 direction = eventData.position - _initPos;
             _distanceRation = Mathf.Clamp01(direction.magnitude / _maxDistance);
-            Direction = direction.normalized;
+            _direction = direction.normalized;
             SetJoystickPosition();
         }
 
@@ -57,12 +53,12 @@ namespace Core.CustomInput
 
         private void SetJoystickPosition()
         {
-            _internalJoystick.anchoredPosition = Direction * _distanceRation * _maxDistance;
+            _internalJoystick.anchoredPosition = _direction * _distanceRation * _maxDistance;
         }
 
         private void ResetJoystickPosition()
         {
-            Direction = Vector2.zero;
+            _direction = Vector2.zero;
             _distanceRation = 0f;
             SetJoystickPosition();
         }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.StateMachine.BossSM
+namespace Core.StateMachine.Boss
 {
     public class BossAnimations : MonoBehaviour
     {

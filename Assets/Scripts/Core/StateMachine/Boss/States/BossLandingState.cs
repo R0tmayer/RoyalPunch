@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Core.StateMachine.BossSM.States
+namespace Core.StateMachine.Boss.States
 {
     public class BossLandingState : BossBassState
     {
@@ -60,7 +60,7 @@ namespace Core.StateMachine.BossSM.States
             var distance = Vector3.Distance(stateMachine.transform.position, heroPosition);
             
             if (distance < GameParameters.Instance.CircleDistance)
-                RagdollActivator.Instance.MakeHeroPhysical();
+                RagdollActivator.Instance.PushHero();
         }
 
         private IEnumerator SetIdleStateAfterDelay(BossStateMachine stateMachine)

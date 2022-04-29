@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Core.StateMachine.HeroSM;
+using Core.StateMachine.Hero;
 using UnityEngine;
 
-namespace Core.StateMachine.BossSM.States
+namespace Core.StateMachine.Boss.States
 {
     public class BossMagnetismState : BossBassState
     {
@@ -57,7 +57,7 @@ namespace Core.StateMachine.BossSM.States
         private IEnumerator PushPlayerAfterDelay(BossStateMachine stateMachine)
         {
             yield return new WaitForSeconds(stateMachine.SuperPunchTime);
-            RagdollActivator.Instance.MakeHeroPhysical();
+            RagdollActivator.Instance.PushHero();
         }
         
         private IEnumerator SetIdleStateAfterDelay(BossStateMachine stateMachine)

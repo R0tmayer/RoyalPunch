@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.StateMachine.HeroSM
+namespace Core.StateMachine.Hero.States
 {
     public class HeroFallState : HeroBaseState
     {

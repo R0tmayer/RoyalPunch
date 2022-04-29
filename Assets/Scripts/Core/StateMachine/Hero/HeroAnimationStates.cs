@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.StateMachine.HeroSM
+namespace Core.StateMachine.Hero
 {
     public class HeroAnimationStates : MonoBehaviour
     {

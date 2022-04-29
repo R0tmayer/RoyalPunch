@@ -1,45 +1,47 @@
-﻿using UnityEngine;
+﻿using Core.StateMachine.Hero;
+using UnityEngine;
 
-namespace Core.StateMachine.BossSM.States
+namespace Core.StateMachine.Boss.States
 {
-    public class BossPunchState : BossBassState
+    public class BossIdleState : BossBassState
     {
         private BossAnimations _animations;
-        
+
         public override void EnterState(BossStateMachine stateMachine)
         {
             _animations = stateMachine.Animations;
-            _animations.SetPunchBool(true);
+            _animations.SetIdleBool(true);
             stateMachine.LookAtTarget.Enabled = true;
         }
 
         public override void ExitState(BossStateMachine stateMachine)
         {
-            _animations.SetPunchBool(false);
+            _animations.SetIdleBool(false);
         }
 
         public override void UpdateState(BossStateMachine stateMachine)
         {
-            
         }
 
         public override void OnCollisionEnter(BossStateMachine stateMachine, Collision collision)
         {
-            
         }
 
         public override void OnTriggerExit(BossStateMachine stateMachine, Collider other)
         {
-            stateMachine.SetIdleState();
+            
         }
 
         public override void OnTriggerStay(BossStateMachine stateMachine, Collider other)
         {
+            if (other.TryGetComponent(out HeroStateMachine _))
+            {
+                stateMachine.SetPunchState();
+            }
         }
 
         public override void OnTriggerEnter(BossStateMachine stateMachine, Collider other)
         {
-            
         }
     }
 }

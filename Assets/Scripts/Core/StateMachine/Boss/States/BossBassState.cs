@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.StateMachine.BossSM.States
+namespace Core.StateMachine.Boss.States
 {
     public abstract class BossBassState
     {

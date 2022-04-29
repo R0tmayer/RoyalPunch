@@ -1,11 +1,12 @@
-﻿using Core.StateMachine.BossSM;
+﻿using Core.StateMachine.Boss;
 using UnityEngine;
 
-namespace Core.StateMachine.HeroSM
+namespace Core.StateMachine.Hero.States
 {
     public class HeroMoveAndPunchState : HeroBaseState
     {
         private HeroAnimationStates _animations;
+
         public override void EnterState(HeroStateMachine stateMachine)
         {
             _animations = stateMachine.Animations;
@@ -26,19 +27,16 @@ namespace Core.StateMachine.HeroSM
 
             SetBlendTree();
             Move();
-            
-            if(stateMachine.IsMagnetism)
+
+            if (stateMachine.IsMagnetism)
                 MoveToBoss();
 
             void SetBlendTree()
             {
                 _animations.SetDirectionYFloat(input.Direction.y);
-
-                if (input.Direction.y < 0)
-                    _animations.SetDirectionXFloat(-input.Direction.x);
-                else
-                    _animations.SetDirectionXFloat(input.Direction.x);
+                _animations.SetDirectionXFloat(input.Direction.y < 0 ? -input.Direction.x : input.Direction.x);
             }
+
             void Move()
             {
                 var movement = Vector3.zero;
@@ -48,6 +46,7 @@ namespace Core.StateMachine.HeroSM
 
                 stateMachine.CharacterController.Move(movement);
             }
+
             void MoveToBoss()
             {
                 var movement = Vector3.zero;

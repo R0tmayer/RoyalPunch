@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Core.StateMachine.BossSM.States
+namespace Core.StateMachine.Boss.States
 {
     public class BossConeState : BossBassState
     {
@@ -65,7 +65,7 @@ namespace Core.StateMachine.BossSM.States
             if (angleToHero < GameParameters.Instance.ConeAngleToHero &&
                 distanceToHero < GameParameters.Instance.ConeDistance)
             {
-                RagdollActivator.Instance.MakeHeroPhysical();
+                RagdollActivator.Instance.PushHero();
             }
         }
 

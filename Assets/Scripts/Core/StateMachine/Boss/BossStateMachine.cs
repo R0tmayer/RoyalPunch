@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
-using Core.CustomInput;
-using Core.StateMachine.BossSM.States;
-using Core.StateMachine.HeroSM;
+﻿using System.Collections;
+using Core.StateMachine.Boss.States;
+using Core.StateMachine.Hero;
 using UnityEngine;
 
-namespace Core.StateMachine.BossSM
+namespace Core.StateMachine.Boss
 {
     public class BossStateMachine : MonoBehaviour
     {
@@ -26,6 +24,8 @@ namespace Core.StateMachine.BossSM
         private BossConeState _coneState = new BossConeState();
         private BossMagnetismState _magnetismState = new BossMagnetismState();
 
+        private float _timer;
+
         #region Execution
 
         private void Start()
@@ -36,7 +36,29 @@ namespace Core.StateMachine.BossSM
 
         private void Update()
         {
-            print(_currentState);
+            _timer += Time.deltaTime;
+
+            if (_timer > GameParameters.Instance.UseSkillPeriod)
+            {
+                var random = Random.Range(0, 3);
+
+                switch (random)
+                {
+                    case 0:
+                        SetConeState();
+                        break;
+                    case 1:
+                        SetMagnetismState();
+                        break;
+                    case 2:
+                        SetLandingState();
+                        break;
+                }
+
+                _timer = 0;
+            }
+
+
             _currentState.UpdateState(this);
         }
 
@@ -70,10 +92,10 @@ namespace Core.StateMachine.BossSM
 
         [ContextMenu("SetLandingState")]
         public void SetLandingState() => SwitchState(_landingState);
-        
+
         [ContextMenu("SetConeState")]
-        public void SetConeState() => SwitchState(_coneState);        
-        
+        public void SetConeState() => SwitchState(_coneState);
+
         [ContextMenu("SetMagnetismState")]
         public void SetMagnetismState() => SwitchState(_magnetismState);
 
@@ -83,7 +105,6 @@ namespace Core.StateMachine.BossSM
             _currentState = state;
             _currentState.EnterState(this);
         }
-        
 
         #endregion
 

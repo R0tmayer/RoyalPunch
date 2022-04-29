@@ -1,7 +1,8 @@
 ﻿using Core.CustomInput;
+using Core.StateMachine.Hero.States;
 using UnityEngine;
 
-namespace Core.StateMachine.HeroSM
+namespace Core.StateMachine.Hero
 {
     public class HeroStateMachine : MonoBehaviour
     {
