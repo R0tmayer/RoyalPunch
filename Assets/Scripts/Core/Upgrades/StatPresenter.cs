@@ -12,11 +12,9 @@
         }
 
         public int PowerValue => _upgradesConfig.PowerStatList[_statLevelSaver.PowerLevel].Value;
-        public int SpeedValue => _upgradesConfig.SpeedStatList[_statLevelSaver.SpeedLevel].Value;
-        public int ArmorValue => _upgradesConfig.ArmorStatList[_statLevelSaver.ArmorLevel].Value;        
+        public int HealthValue => _upgradesConfig.HealthStatList[_statLevelSaver.HealthLevel].Value;
         
         public int PowerCost => _upgradesConfig.PowerStatList[_statLevelSaver.PowerLevel].Cost;
-        public int SpeedCost => _upgradesConfig.SpeedStatList[_statLevelSaver.SpeedLevel].Cost;
-        public int ArmorCost => _upgradesConfig.ArmorStatList[_statLevelSaver.ArmorLevel].Cost;
+        public int HealthCost => _upgradesConfig.HealthStatList[_statLevelSaver.HealthLevel].Cost;
     }
 }

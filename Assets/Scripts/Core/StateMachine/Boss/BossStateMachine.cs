@@ -98,7 +98,7 @@ namespace Core.StateMachine.Boss
 
         [ContextMenu("SetMagnetismState")]
         public void SetMagnetismState() => SwitchState(_magnetismState);
-
+        
         private void SwitchState(BossBassState state)
         {
             _currentState.ExitState(this);

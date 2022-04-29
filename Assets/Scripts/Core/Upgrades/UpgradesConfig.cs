@@ -12,18 +12,12 @@ namespace Core.Upgrades
         [ListDrawerSettings(ShowIndexLabels = true)]
         private Stat[] _powerStatList;        
         
-        [TabGroup("Upgrades", "Speed")]
+        [TabGroup("Upgrades", "Health")]
         [SerializeField]
         [ListDrawerSettings(ShowIndexLabels = true)]
-        private Stat[] _speedStatList;        
+        private Stat[] _healthStatList;        
         
-        [TabGroup("Upgrades", "Armor")]
-        [SerializeField]
-        [ListDrawerSettings(ShowIndexLabels = true)]
-        private Stat[] _armorStatList;
-
         public Stat[] PowerStatList => _powerStatList;
-        public Stat[] SpeedStatList => _speedStatList;
-        public Stat[] ArmorStatList => _armorStatList;
+        public Stat[] HealthStatList => _healthStatList;
     }
 }

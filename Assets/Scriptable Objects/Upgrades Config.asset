@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Upgrades Config
   m_EditorClassIdentifier: 
   _powerStatList: []
-  _speedStatList: []
-  _armorStatList: []
+  _healthStatList: []
