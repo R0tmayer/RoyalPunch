@@ -19,36 +19,22 @@ namespace Core.StateMachine.Boss.States
             _animations.SetLandingBool(true);
             stateMachine.LookAtTarget.Enabled = false;
 
-            // push hero 
-
             stateMachine.StartCustomCoroutine(PushPlayerAfterDelay(stateMachine));
             stateMachine.StartCustomCoroutine(IncreaseCircle());
             stateMachine.StartCustomCoroutine(SetIdleStateAfterDelay(stateMachine));
         }
 
-        public override void ExitState(BossStateMachine stateMachine)
-        {
-        }
+        public override void ExitState(BossStateMachine stateMachine){ }
 
-        public override void UpdateState(BossStateMachine stateMachine)
-        {
-        }
+        public override void UpdateState(BossStateMachine stateMachine){ }
 
-        public override void OnCollisionEnter(BossStateMachine stateMachine, Collision collision)
-        {
-        }
+        public override void OnCollisionEnter(BossStateMachine stateMachine, Collision collision){ }
 
-        public override void OnTriggerExit(BossStateMachine stateMachine, Collider other)
-        {
-        }
+        public override void OnTriggerExit(BossStateMachine stateMachine, Collider other){ }
 
-        public override void OnTriggerStay(BossStateMachine stateMachine, Collider other)
-        {
-        }
+        public override void OnTriggerStay(BossStateMachine stateMachine, Collider other){ }
 
-        public override void OnTriggerEnter(BossStateMachine stateMachine, Collider other)
-        {
-        }
+        public override void OnTriggerEnter(BossStateMachine stateMachine, Collider other){ }
 
         #endregion
 

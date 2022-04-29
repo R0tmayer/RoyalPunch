@@ -3060,8 +3060,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145051409}
-  m_LocalRotation: {x: 0.4064482, y: -0.00014349485, z: 0.00006383374, w: 0.9136739}
-  m_LocalPosition: {x: -124.5388, y: -1785.9138, z: 2.5882998}
+  m_LocalRotation: {x: 0.40644827, y: -0.00014345693, z: 0.00006381689, w: 0.9136738}
+  m_LocalPosition: {x: -124.5388, y: -1783.9138, z: -6.9616985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1960987129}
@@ -5696,8 +5696,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -6152,8 +6152,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601240728}
-  m_LocalRotation: {x: 0.4064482, y: -0.00014349485, z: 0.00006383374, w: 0.9136739}
-  m_LocalPosition: {x: -124.5388, y: -1785.9138, z: 2.5882998}
+  m_LocalRotation: {x: 0.40644827, y: -0.00014345693, z: 0.00006381689, w: 0.9136738}
+  m_LocalPosition: {x: -124.5388, y: -1783.9138, z: -6.9616985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1547209185}
@@ -7583,19 +7583,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1646991660}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1728305237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728305236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb79a2ceb7a6496ebd6357da6397f74d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bossAnimations: {fileID: 321644587}
 --- !u!114 &1728305238 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 74906342, guid: 670c9f199822b0047861c4086b14e856,
@@ -7608,6 +7595,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc8d717da884d5198200f8a056f083a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1728305246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728305236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb79a2ceb7a6496ebd6357da6397f74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bossAnimations: {fileID: 321644587}
 --- !u!1 &1729785889
 GameObject:
   m_ObjectHideFlags: 0

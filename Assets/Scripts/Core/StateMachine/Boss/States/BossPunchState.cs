@@ -18,28 +18,15 @@ namespace Core.StateMachine.Boss.States
             _animations.SetPunchBool(false);
         }
 
-        public override void UpdateState(BossStateMachine stateMachine)
-        {
-            
-        }
-
-        public override void OnCollisionEnter(BossStateMachine stateMachine, Collision collision)
-        {
-            
-        }
+        public override void UpdateState(BossStateMachine stateMachine){ }
+        public override void OnCollisionEnter(BossStateMachine stateMachine, Collision collision){ }
 
         public override void OnTriggerExit(BossStateMachine stateMachine, Collider other)
         {
             stateMachine.SetIdleState();
         }
 
-        public override void OnTriggerStay(BossStateMachine stateMachine, Collider other)
-        {
-        }
-
-        public override void OnTriggerEnter(BossStateMachine stateMachine, Collider other)
-        {
-            
-        }
+        public override void OnTriggerStay(BossStateMachine stateMachine, Collider other){ }
+        public override void OnTriggerEnter(BossStateMachine stateMachine, Collider other){ }
     }
 }

@@ -12,10 +12,8 @@ namespace Core.StateMachine.Hero
         [field: SerializeField] public InputJoystickReceiver Input { get; private set; }
         public bool IsMagnetism { get; set; }
 
-
         private HeroBaseState _currentState;
-        private HeroMoveAndPunchState _moveAndPunchState = new HeroMoveAndPunchState();
-        private HeroFallState _fallState = new HeroFallState();
+        private readonly HeroMoveAndPunchState _moveAndPunchState = new HeroMoveAndPunchState();
 
         #region Execution
 

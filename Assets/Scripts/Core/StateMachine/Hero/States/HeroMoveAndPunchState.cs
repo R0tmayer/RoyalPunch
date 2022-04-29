@@ -56,9 +56,7 @@ namespace Core.StateMachine.Hero.States
             }
         }
 
-        public override void OnCollisionEnter(HeroStateMachine stateMachine, Collision collision)
-        {
-        }
+        public override void OnCollisionEnter(HeroStateMachine stateMachine, Collision collision){ }
 
         public override void OnTriggerExit(HeroStateMachine stateMachine, Collider other)
         {
