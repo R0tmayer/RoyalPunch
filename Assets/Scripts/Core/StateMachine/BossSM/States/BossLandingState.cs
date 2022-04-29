@@ -21,6 +21,7 @@ namespace Core.StateMachine.BossSM.States
 
             // push hero 
 
+            stateMachine.StartCustomCoroutine(PushPlayerAfterDelay(stateMachine));
             stateMachine.StartCustomCoroutine(IncreaseCircle());
             stateMachine.StartCustomCoroutine(SetIdleStateAfterDelay(stateMachine));
         }
@@ -51,6 +52,17 @@ namespace Core.StateMachine.BossSM.States
 
         #endregion
 
+        private IEnumerator PushPlayerAfterDelay(BossStateMachine stateMachine)
+        {
+            yield return new WaitForSeconds(stateMachine.LandingTime);
+
+            var heroPosition = stateMachine.HeroStateMachine.transform.position;
+            var distance = Vector3.Distance(stateMachine.transform.position, heroPosition);
+            
+            if (distance < GameParameters.Instance.CircleDistance)
+                RagdollActivator.Instance.MakeHeroPhysical();
+        }
+
         private IEnumerator SetIdleStateAfterDelay(BossStateMachine stateMachine)
         {
             var delay = stateMachine.LandingTime + stateMachine.BoredTime;
@@ -72,7 +84,6 @@ namespace Core.StateMachine.BossSM.States
             const float circleLifeTime = 1.5f;
             yield return new WaitForSeconds(circleLifeTime);
             _circleMeshRenderer.material.SetFloat(_farPlane, 0);
-
         }
     }
 }

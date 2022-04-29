@@ -1,5 +1,4 @@
 ﻿using System;
-using Core.Hero;
 using UnityEngine;
 
 namespace Core

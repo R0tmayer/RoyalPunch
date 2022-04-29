@@ -14,6 +14,7 @@ namespace Core.StateMachine.BossSM.States
         {
             _animations = stateMachine.Animations;
             _animations.SetMagnetismBool(true);
+            stateMachine.HeroStateMachine.IsMagnetism = true;
         }
 
         public override void ExitState(BossStateMachine stateMachine)
@@ -45,11 +46,19 @@ namespace Core.StateMachine.BossSM.States
                 _animations.SetMagnetismBool(false);
                 _animations.SetSuperPunchBool(true);
                 stateMachine.LookAtTarget.Enabled = false;
+                stateMachine.HeroStateMachine.IsMagnetism = false;
+                stateMachine.StartCustomCoroutine(PushPlayerAfterDelay(stateMachine));
                 stateMachine.StartCustomCoroutine(SetIdleStateAfterDelay(stateMachine));
             }
         }
 
         #endregion
+        
+        private IEnumerator PushPlayerAfterDelay(BossStateMachine stateMachine)
+        {
+            yield return new WaitForSeconds(stateMachine.SuperPunchTime);
+            RagdollActivator.Instance.MakeHeroPhysical();
+        }
         
         private IEnumerator SetIdleStateAfterDelay(BossStateMachine stateMachine)
         {

@@ -8,6 +8,7 @@ namespace Core
         public static GameParameters Instance;
 
         [field: SerializeField] public float HeroSpeed { get; private set; }
+        [field: SerializeField] public float MagnetismSpeed { get; private set; }
         [field: SerializeField] public float ConeAngleToHero { get; private set; }
         [field: SerializeField] public float ConeDistance { get; private set;}
         [field: SerializeField] public float CircleDistance { get; private set;}

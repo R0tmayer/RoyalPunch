@@ -9,6 +9,8 @@ namespace Core.StateMachine.HeroSM
         [field: SerializeField] public Transform Hero { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
         [field: SerializeField] public InputJoystickReceiver Input { get; private set; }
+        public bool IsMagnetism { get; set; }
+
 
         private HeroBaseState _currentState;
         private HeroMoveAndPunchState _moveAndPunchState = new HeroMoveAndPunchState();

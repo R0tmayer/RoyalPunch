@@ -9,6 +9,7 @@ namespace Core.StateMachine.BossSM
 {
     public class BossStateMachine : MonoBehaviour
     {
+        [field: SerializeField] public HeroStateMachine HeroStateMachine { get; private set; }
         [field: SerializeField] public BossAnimations Animations { get; private set; }
         [field: SerializeField] public LookAtTarget LookAtTarget { get; private set; }
         [field: SerializeField] public MeshRenderer Cone { get; private set; }
@@ -16,11 +17,11 @@ namespace Core.StateMachine.BossSM
         [field: SerializeField] public float LandingTime { get; private set; }
         [field: SerializeField] public float ConeTime { get; private set; }
         [field: SerializeField] public float BoredTime { get; private set; }
+        [field: SerializeField] public float SuperPunchTime { get; private set; }
 
         private BossBassState _currentState;
         private BossIdleState _idleState = new BossIdleState();
         private BossPunchState _punchState = new BossPunchState();
-        private BossFallState _fallState = new BossFallState();
         private BossLandingState _landingState = new BossLandingState();
         private BossConeState _coneState = new BossConeState();
         private BossMagnetismState _magnetismState = new BossMagnetismState();
@@ -67,8 +68,6 @@ namespace Core.StateMachine.BossSM
 
         public void SetPunchState() => SwitchState(_punchState);
 
-        public void SetFallState() => SwitchState(_fallState);
-        
         [ContextMenu("SetLandingState")]
         public void SetLandingState() => SwitchState(_landingState);
         

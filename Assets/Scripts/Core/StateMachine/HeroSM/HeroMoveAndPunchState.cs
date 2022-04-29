@@ -1,5 +1,4 @@
-﻿using Core.BossSkills;
-using Core.StateMachine.BossSM;
+﻿using Core.StateMachine.BossSM;
 using UnityEngine;
 
 namespace Core.StateMachine.HeroSM
@@ -27,6 +26,9 @@ namespace Core.StateMachine.HeroSM
 
             SetBlendTree();
             Move();
+            
+            if(stateMachine.IsMagnetism)
+                MoveToBoss();
 
             void SetBlendTree()
             {
@@ -44,6 +46,13 @@ namespace Core.StateMachine.HeroSM
                 movement += heroTransform.right * input.Direction.x * speed * Time.deltaTime;
                 movement += heroTransform.forward * input.Direction.y * speed * Time.deltaTime;
 
+                stateMachine.CharacterController.Move(movement);
+            }
+            void MoveToBoss()
+            {
+                var movement = Vector3.zero;
+
+                movement += heroTransform.forward * GameParameters.Instance.MagnetismSpeed * Time.deltaTime;
                 stateMachine.CharacterController.Move(movement);
             }
         }

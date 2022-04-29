@@ -1,31 +1,28 @@
-﻿using System;
-using System.Collections;
-using Core.CustomInput;
+﻿using System.Collections;
 using UnityEngine;
 
-namespace Core.Hero
+namespace Core
 {
     public class RagdollActivator : MonoBehaviour
     {
+        public static RagdollActivator Instance;
+        
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private Transform _rootBone;
         [SerializeField] private Transform _forcePoint;
-        public static RagdollActivator Instance;
-        public Animator _animator;
-        public Rigidbody[] _allRigidbodies;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private Rigidbody[] _allRigidbodies;
 
         private Vector3[] _cachedBonesPositions;
         private Vector3[] _cachedBonesAngles;
 
         public bool _isLerping;
-        private InputJoystickReceiver _input;
 
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(this);
             }
             else if(Instance == this)
             {
@@ -40,6 +37,8 @@ namespace Core.Hero
 
         private void LateUpdate()
         {
+            transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+
             if (_isLerping == false)
                 return;
 
@@ -55,12 +54,12 @@ namespace Core.Hero
         }
 
         [ContextMenu("MakePhysical")]
-        public void MakePhysical()
+        public void MakeHeroPhysical()
         {
             ActivateRagdollAndPushWithForce(-transform.forward, GameParameters.Instance.PushPower);
         }
 
-        public void ActivateRagdollAndPushWithForce(Vector3 direction, float force)
+        private void ActivateRagdollAndPushWithForce(Vector3 direction, float force)
         {
             _cachedBonesPositions = new Vector3[_allRigidbodies.Length];
             _cachedBonesAngles = new Vector3[_allRigidbodies.Length];
@@ -112,11 +111,7 @@ namespace Core.Hero
 
             _animator.enabled = true;
             _characterController.enabled = true;
-            _input.Enabled = true;
             // _isLerping = true;
-            
-            transform.position = new Vector3(transform.position.x, 2, transform.position.z);
-
 
             yield return null;
         }
