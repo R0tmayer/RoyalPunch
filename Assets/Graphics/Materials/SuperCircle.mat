@@ -7,10 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HeroSkin
-  m_Shader: {fileID: 4800000, guid: 78ba6c2256ec3954188411a3a2382dc8, type: 3}
-  m_ShaderKeywords: _ADDITIONAL_LIGHTS_ENABLED _ENVIRONMENT_LIGHTING_ENABLED _FOG
-    _FRESNEL _TOON_RECEIVE_SHADOWS _ZWRITE_ON
+  m_Name: SuperCircle
+  m_Shader: {fileID: 4800000, guid: 65c25e6bde0408547a16aaaa26dcdd09, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,10 +59,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _RampMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -81,64 +76,43 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AdditionalLights: 1
-    - _AdditionalLightsSpecular: 0
     - _AlphaClip: 0
-    - _AnisoSpecular: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorOverlap: 0.339
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Emission: 0
-    - _EnvironmentLightingEnabled: 1
     - _EnvironmentReflections: 1
-    - _Fog: 1
-    - _Fresnel: 1
-    - _FresnelSmoothness: 0
-    - _FresnelThickness: 0
+    - _FarPlane: 0
+    - _FieldOfView: 360
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _NearPlane: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _PureShadowColor: 0
     - _QueueOffset: 0
-    - _Ramp0: -0.5
-    - _Ramp1: 0.5
-    - _RampSmoothness: 0.5
-    - _RampTriple: 0
     - _ReceiveShadows: 1
-    - _ShadowMask: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _Specular: 0
-    - _SpecularExponent: 0
     - _SpecularHighlights: 1
-    - _SpecularSmoothness: 0.06
-    - _SpecularThreshold: 0
     - _SrcBlend: 1
     - _Surface: 0
-    - _UseRampMap: 0
-    - _VertexColor: 0
-    - _VertexLit: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _Color: {r: 0.9245283, g: 0.004360993, b: 0.004360993, a: 0.6392157}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
-    - _ShadowTint: {r: 0, g: 0, b: 0, a: 0.2627451}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7576970618846786664
+--- !u!114 &8359193829710712028
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

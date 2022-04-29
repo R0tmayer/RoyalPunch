@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections;
-using Core.Animations;
+using Core.Hero;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 namespace Core.BossSkills
 {
@@ -10,6 +9,7 @@ namespace Core.BossSkills
     {
         [SerializeField] private LookAtTarget _lookAtTarget;
         [SerializeField] private GameObject _cone;
+        public static BossSuperCone Instance;
         private BossAnimations _bossAnimations;
         private HeroAnimations _heroAnimations;
         private static readonly int _farPlane = Shader.PropertyToID("_FarPlane");
@@ -23,10 +23,21 @@ namespace Core.BossSkills
             _bossAnimations = bossAnimations;
         }
 
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             _meshRenderer = _cone.GetComponent<MeshRenderer>();
             _meshRenderer.sharedMaterial.SetFloat(_farPlane, 0);
+        }
+
+        private void Update()
+        {
+            DistanceToHero = Vector3.Distance(_heroAnimations.transform.position, transform.position);
+            print(DistanceToHero);
         }
 
         [ContextMenu("StartCharging")]
@@ -38,7 +49,7 @@ namespace Core.BossSkills
         public IEnumerator StartCharging()
         {
             _bossAnimations.SuperConeAnimation(); // Carefully animation event exist
-            _lookAtTarget.IsLooking = false;
+            _lookAtTarget.Enabled = false;
 
             StartCoroutine(IncreaseConeCoroutine());
             yield return new WaitForSeconds(2);

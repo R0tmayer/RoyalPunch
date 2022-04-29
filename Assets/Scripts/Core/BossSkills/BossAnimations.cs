@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections;
-using Core.BossSkills;
+﻿using System.Collections;
 using Core.Hero;
 using UnityEngine;
 
-namespace Core.Animations
+namespace Core.BossSkills
 {
     public class BossAnimations : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private float _timeToReturnIdleState;
         [SerializeField] private BossSuperCone _bossSuperCone;
-        
+
         [SerializeField] private float _angleToHero;
-        [SerializeField] private float _distanceToHero;
+        [SerializeField] private float _coneDistance;
+        [SerializeField] private float _circleDistance;
 
         private static readonly int _idle = Animator.StringToHash("idle");
         private static readonly int _punching = Animator.StringToHash("Punching");
         private static readonly int _magnetism = Animator.StringToHash("Magnetism");
         private static readonly int _superPunch = Animator.StringToHash("SuperPunch");
         private static readonly int _superCone = Animator.StringToHash("SuperCone");
+        private static readonly int _superLanding = Animator.StringToHash("SuperLanding");
         private HeroAnimations _heroAnimations;
+        private int _iterator;
+        private float _timer;
 
         public BossStates BossState { get; set; }
         public bool IsPunching { get; set; }
@@ -57,28 +59,34 @@ namespace Core.Animations
         {
             ResetAnimations();
             _animator.SetTrigger(_superPunch);
-            // StartCoroutine(SetIdleStateAfterTime());
+            StartCoroutine(SetIdleStateAfterTime());
         }
 
-        public void SuperConeAnimation()
-        {
-            _animator.SetTrigger(_superCone);
-        }
+        public void SuperConeAnimation() => _animator.SetTrigger(_superCone);
+        public void SuperLandingAnimation() => _animator.SetTrigger(_superLanding);
 
         private void PushHero()
         {
-            RagdollActivator.Instance.ActivateRagdollAndPushWithForce(new Vector3(0, 1, -1), 10);
+            RagdollActivator.Instance.ActivateRagdollAndPushWithForce(Vector3.up, 10);
             _heroAnimations.IsPunching = false;
         }
 
         public void PushHeroIfAngleAndDistanceLessThan()
         {
             // Carefully animation event exist
-            
+
             print("Angle to hero = " + _bossSuperCone.AngleToHero);
             print("Angle to hero = " + _bossSuperCone.DistanceToHero);
 
-            if (_bossSuperCone.AngleToHero < _angleToHero && _bossSuperCone.DistanceToHero < _distanceToHero)
+            if (_bossSuperCone.AngleToHero < _angleToHero && _bossSuperCone.DistanceToHero < _coneDistance)
+            {
+                PushHero();
+            }
+        }
+
+        public void PushHeroIfDistanceLessThan()
+        {
+            if (_bossSuperCone.DistanceToHero < _circleDistance)
             {
                 PushHero();
             }

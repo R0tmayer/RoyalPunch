@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Core.Input
+namespace Core.CustomInput
 {
     public class InputJoystickReceiver : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
@@ -15,11 +15,11 @@ namespace Core.Input
         private float _maxDistance;
         private Vector2 _direction;
 
-        public bool InputOn { get; set; } = true;
+        public bool Enabled { get; set; } = true;
 
         public Vector2 Direction
         {
-            get => InputOn ? _direction : Vector2.zero;
+            get => Enabled ? _direction : Vector2.zero;
             private set => _direction = value;
         }
 

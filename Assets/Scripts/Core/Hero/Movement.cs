@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Input;
+using Core.CustomInput;
 using UnityEngine;
 
 namespace Core.Hero

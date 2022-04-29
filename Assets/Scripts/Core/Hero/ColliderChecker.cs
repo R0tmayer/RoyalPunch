@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Animations;
+using Core.BossSkills;
 using UnityEngine;
 
 namespace Core.Hero

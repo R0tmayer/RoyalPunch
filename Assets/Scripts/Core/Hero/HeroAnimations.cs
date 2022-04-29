@@ -1,14 +1,12 @@
-﻿using System;
-using Core.Input;
+﻿using Core.CustomInput;
 using UnityEngine;
 
-namespace Core.Animations
+namespace Core.Hero
 {
     public class HeroAnimations : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
 
-        private InputJoystickReceiver _input;
         private static readonly int _runForward = Animator.StringToHash("RunForward");
         private static readonly int _runBackward = Animator.StringToHash("RunBackward");
         private static readonly int _runLeft = Animator.StringToHash("RunLeft");
@@ -17,11 +15,15 @@ namespace Core.Animations
         private static readonly int _punching = Animator.StringToHash("Punching");
         private static readonly int _xDirection = Animator.StringToHash("XDirection");
         private static readonly int _yDirection = Animator.StringToHash("YDirection");
+        
+        private InputJoystickReceiver _input;
+        private RagdollActivator _ragdollActivator;
 
         public bool IsPunching { get; set; }
 
-        public void Construct(InputJoystickReceiver input)
+        public void Construct(InputJoystickReceiver input, RagdollActivator ragdollActivator)
         {
+            _ragdollActivator = ragdollActivator;
             _input = input;
         }
 

@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using Core.Animations;
+﻿using System;
+using System.Collections;
 using Core.Hero;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ namespace Core.BossSkills
     {
         [SerializeField] private Movement _heroMovement;
         [SerializeField] private float _magnetismSpeed;
+        public static BossMagnetism Instance;
 
         private IEnumerator _coroutine;
         private BossAnimations _bossAnimations;
@@ -18,8 +19,13 @@ namespace Core.BossSkills
             _bossAnimations = bossAnimations;
         }
 
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         [ContextMenu("StartMagnetism")]
-        private void StartMagnetism()
+        public void StartMagnetism()
         {
             _bossAnimations.IsMagnetism = true;
             _bossAnimations.BossState = BossStates.Magnetism;

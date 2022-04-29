@@ -8,11 +8,11 @@ namespace Core
     {
         [SerializeField] private Transform _target;
 
-        public bool IsLooking { get; set; } = true;
+        public bool Enabled { get; set; } = true;
 
         private void Update()
         {
-            if (IsLooking)
+            if (Enabled)
                 transform.LookAt(_target);
         }
     }
