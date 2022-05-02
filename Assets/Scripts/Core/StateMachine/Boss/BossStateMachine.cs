@@ -36,6 +36,9 @@ namespace Core.StateMachine.Boss
 
         private void Update()
         {
+            if(Input.GetKeyDown(KeyCode.D))
+                Animations.SetHitTrigger();
+            
             _timer += Time.deltaTime;
 
             if (_timer > GameParameters.Instance.UseSkillPeriod)

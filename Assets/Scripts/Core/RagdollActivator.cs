@@ -58,7 +58,6 @@ namespace Core
                 _allRigidbodies[i].transform.localPosition = Vector3.Lerp(_fallenBonesPositions[i],
                     _allRigidbodies[i].transform.localPosition, _lerp);
 
-
                 _allRigidbodies[i].transform.rotation = Quaternion.Slerp(_fallenBonesAngles[i],
                     _allRigidbodies[i].transform.rotation, _lerp);
 
@@ -72,8 +71,6 @@ namespace Core
             _animator.enabled = false;
             ActivateRagdoll();
             _pushBone.AddForce((-transform.forward + Vector3.up) * GameParameters.Instance.PushForce, ForceMode.Impulse);
-            
-            IncreaseMass();
             StartCoroutine(ReturnToIdlePositionAfterSleepTime());
         }
 
@@ -85,31 +82,14 @@ namespace Core
             }
         }
 
-        private void IncreaseMass()
-        {
-            for (int i = 0; i < _allRigidbodies.Length; i++)
-            {
-                _allRigidbodies[i].mass += GameParameters.Instance.MassToIncrease;
-            }
-        }
-
-        private void DecreaseMass()
-        {
-            for (int i = 0; i < _allRigidbodies.Length; i++)
-            {
-                _allRigidbodies[i].mass -= GameParameters.Instance.MassToIncrease;
-            }
-        }
-
         private IEnumerator ReturnToIdlePositionAfterSleepTime()
         {
             yield return new WaitForSeconds(GameParameters.Instance.RagdollSleepTime);
             
             CacheFallenBones();
-            DecreaseMass();
             ResetArmatureToZeroAndMovePrefabToArmature();
-            _animator.enabled = true;
             _characterController.enabled = true;
+            _animator.enabled = true;
             DeactivateRagdoll();
             
             _isLerping = true;
