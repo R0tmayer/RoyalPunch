@@ -14,6 +14,7 @@ namespace Core
         [field: SerializeField] public float CircleDistance { get; private set;}
         [field: SerializeField] public float RagdollSleepTime { get; private set;}
         [field: SerializeField] public float PushForce { get; private set;}
+        [field: SerializeField] public float MassToIncrease { get; private set;}
         [field: SerializeField] public float UseSkillPeriod { get; private set;}
         [field: SerializeField] public float StandUpLeprRate { get; private set;}
 

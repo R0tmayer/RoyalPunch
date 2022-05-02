@@ -16,8 +16,6 @@ namespace Core
         [SerializeField] private Rigidbody[] _allRigidbodies;
 
         private float _lerp;
-        private Vector3[] _cachedIdlePositions;
-        private Vector3[] _cachedIdleAngles;
 
         public bool _isLerping;
         private Vector3[] _fallenBonesPositions;
@@ -40,6 +38,13 @@ namespace Core
             }
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+                PushHero();
+
+        }
+        
         private void LateUpdate()
         {
             transform.position = new Vector3(transform.position.x, 2, transform.position.z);
@@ -54,7 +59,7 @@ namespace Core
                     _allRigidbodies[i].transform.localPosition, _lerp);
 
 
-                _allRigidbodies[i].transform.rotation = Quaternion.Lerp(_fallenBonesAngles[i],
+                _allRigidbodies[i].transform.rotation = Quaternion.Slerp(_fallenBonesAngles[i],
                     _allRigidbodies[i].transform.rotation, _lerp);
 
             }
@@ -66,8 +71,9 @@ namespace Core
             _characterController.enabled = false;
             _animator.enabled = false;
             ActivateRagdoll();
-            _pushBone.AddForce((-transform.forward + Vector3.up * 2f) * GameParameters.Instance.PushForce, ForceMode.Impulse);
+            _pushBone.AddForce((-transform.forward + Vector3.up) * GameParameters.Instance.PushForce, ForceMode.Impulse);
             
+            IncreaseMass();
             StartCoroutine(ReturnToIdlePositionAfterSleepTime());
         }
 
@@ -79,16 +85,33 @@ namespace Core
             }
         }
 
+        private void IncreaseMass()
+        {
+            for (int i = 0; i < _allRigidbodies.Length; i++)
+            {
+                _allRigidbodies[i].mass += GameParameters.Instance.MassToIncrease;
+            }
+        }
+
+        private void DecreaseMass()
+        {
+            for (int i = 0; i < _allRigidbodies.Length; i++)
+            {
+                _allRigidbodies[i].mass -= GameParameters.Instance.MassToIncrease;
+            }
+        }
+
         private IEnumerator ReturnToIdlePositionAfterSleepTime()
         {
             yield return new WaitForSeconds(GameParameters.Instance.RagdollSleepTime);
             
-            ResetArmatureToZeroAndMovePrefabToArmature();
             CacheFallenBones();
+            DecreaseMass();
+            ResetArmatureToZeroAndMovePrefabToArmature();
             _animator.enabled = true;
             _characterController.enabled = true;
             DeactivateRagdoll();
-
+            
             _isLerping = true;
             _lerp = 0;
 
@@ -108,7 +131,7 @@ namespace Core
             for (int i = 0; i < _allRigidbodies.Length; i++)
             {
                 _fallenBonesPositions[i] = _allRigidbodies[i].transform.localPosition;
-                _fallenBonesAngles[i] = Quaternion.Euler(_allRigidbodies[i].transform.localEulerAngles) ;
+                _fallenBonesAngles[i] = Quaternion.Euler(_allRigidbodies[i].transform.localEulerAngles);
             }
         }
         
