@@ -1318,6 +1318,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3770760377080376409}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &658411228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1495417156750125541, guid: a3113a14302db814eb9403e60e7bc4dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1463289718}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb6cea5dee8496c866c9270ee011c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &671831129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _upgradesConfig: {fileID: 11400000, guid: 351f15c5be4f2474486f66b7b6f9d941, type: 2}
   _inputJoystickReceiver: {fileID: 1537203467}
+  _heroStateMachine: {fileID: 1728305238}
   _ragdollActivator: {fileID: 491146043}
 --- !u!114 &929501517
 MonoBehaviour:
@@ -1847,7 +1860,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145051409}
-  m_LocalRotation: {x: 0.4064482, y: -0.00014346339, z: 0.000063819745, w: 0.9136739}
+  m_LocalRotation: {x: 0.4064482, y: -0.00014349484, z: 0.00006383373, w: 0.9136739}
   m_LocalPosition: {x: -124.5388, y: -1783.9138, z: -7.411701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2705,6 +2718,16 @@ PrefabInstance:
       propertyPath: <HeroStateMachine>k__BackingField
       value: 
       objectReference: {fileID: 1728305238}
+    - target: {fileID: 1495417156750125541, guid: a3113a14302db814eb9403e60e7bc4dd,
+        type: 3}
+      propertyPath: _randomX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1495417156750125541, guid: a3113a14302db814eb9403e60e7bc4dd,
+        type: 3}
+      propertyPath: _randomY
+      value: 0.267
+      objectReference: {fileID: 0}
     - target: {fileID: 6095019488348759368, guid: a3113a14302db814eb9403e60e7bc4dd,
         type: 3}
       propertyPath: m_Name
@@ -3303,7 +3326,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601240728}
-  m_LocalRotation: {x: 0.4064482, y: -0.00014346339, z: 0.000063819745, w: 0.9136739}
+  m_LocalRotation: {x: 0.4064482, y: -0.00014349484, z: 0.00006383373, w: 0.9136739}
   m_LocalPosition: {x: -124.5388, y: -1783.9138, z: -7.411701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3352,6 +3375,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1814147971}
     m_Modifications:
+    - target: {fileID: 74906342, guid: 670c9f199822b0047861c4086b14e856, type: 3}
+      propertyPath: _hitImageEase
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 74906342, guid: 670c9f199822b0047861c4086b14e856, type: 3}
+      propertyPath: _damageInfoArea
+      value: 
+      objectReference: {fileID: 658411228}
+    - target: {fileID: 74906342, guid: 670c9f199822b0047861c4086b14e856, type: 3}
+      propertyPath: _hitImageDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 74906342, guid: 670c9f199822b0047861c4086b14e856, type: 3}
       propertyPath: <Input>k__BackingField
       value: 

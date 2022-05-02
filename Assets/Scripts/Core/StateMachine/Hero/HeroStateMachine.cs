@@ -1,6 +1,7 @@
 ﻿using Core.CustomInput;
 using Core.StateMachine.Boss;
 using Core.StateMachine.Hero.States;
+using Core.UI;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,11 @@ namespace Core.StateMachine.Hero
         [field: SerializeField] public Transform Hero { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
         [field: SerializeField] public InputJoystickReceiver Input { get; private set; }
+        [SerializeField] private DamageInfoArea _damageInfoArea;
         [SerializeField] private Image _hitImageLeft;
         [SerializeField] private Image _hitImageRight;
+        [SerializeField] private float _hitImageDuration;
+        [SerializeField] private Ease _hitImageEase;
         public bool IsMagnetism { get; set; }
 
         private HeroBaseState _currentState;
@@ -63,13 +67,17 @@ namespace Core.StateMachine.Hero
         public void HitBossAnimationLeft()
         {
             BossAnimations.SetHitTrigger();
+            _damageInfoArea.ShowNewText();
             _hitImageLeft.DOFade(1, 0.1f).OnComplete(() => _hitImageLeft.DOFade(0, 0.1f));
         }
-        
+
         public void HitBossAnimationRight()
         {
             BossAnimations.SetHitTrigger();
-            _hitImageRight.DOFade(1, 0.1f).OnComplete(() => _hitImageRight.DOFade(0, 0.1f));
+            _damageInfoArea.ShowNewText();
+            _hitImageRight.DOFade(1, _hitImageDuration)
+                .SetEase(_hitImageEase)
+                .OnComplete(() => _hitImageRight.DOFade(0, _hitImageDuration).SetEase(_hitImageEase));
         }
 
         #endregion

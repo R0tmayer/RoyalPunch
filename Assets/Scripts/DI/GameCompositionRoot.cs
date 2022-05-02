@@ -1,5 +1,6 @@
 using Core;
 using Core.CustomInput;
+using Core.StateMachine.Hero;
 using Core.Upgrades;
 using DELTation.DIFramework;
 using DELTation.DIFramework.Containers;
@@ -11,6 +12,7 @@ namespace DI
     {
         [SerializeField] private UpgradesConfig _upgradesConfig;
         [SerializeField] private InputJoystickReceiver _inputJoystickReceiver;
+        [SerializeField] private HeroStateMachine _heroStateMachine;
         [SerializeField] private RagdollActivator _ragdollActivator;
 
         protected override void ComposeDependencies(ICanRegisterContainerBuilder builder)
@@ -18,6 +20,7 @@ namespace DI
             builder.Register<StatLevelSaver>()
                 .RegisterIfNotNull(_upgradesConfig)
                 .RegisterIfNotNull(_ragdollActivator)
+                .RegisterIfNotNull(_heroStateMachine)
                 .RegisterIfNotNull(_inputJoystickReceiver);
         }
     }
