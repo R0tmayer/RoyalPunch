@@ -1,5 +1,6 @@
 using Core;
 using Core.CustomInput;
+using Core.StateMachine.Boss;
 using Core.StateMachine.Hero;
 using Core.Upgrades;
 using DELTation.DIFramework;
@@ -14,6 +15,7 @@ namespace DI
         [SerializeField] private InputJoystickReceiver _inputJoystickReceiver;
         [SerializeField] private HeroStateMachine _heroStateMachine;
         [SerializeField] private RagdollActivator _ragdollActivator;
+        [SerializeField] private BossAnimations _bossAnimations;
 
         protected override void ComposeDependencies(ICanRegisterContainerBuilder builder)
         {
@@ -21,6 +23,7 @@ namespace DI
                 .RegisterIfNotNull(_upgradesConfig)
                 .RegisterIfNotNull(_ragdollActivator)
                 .RegisterIfNotNull(_heroStateMachine)
+                .RegisterIfNotNull(_bossAnimations)
                 .RegisterIfNotNull(_inputJoystickReceiver);
         }
     }

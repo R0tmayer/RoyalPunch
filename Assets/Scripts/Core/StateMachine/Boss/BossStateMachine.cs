@@ -7,8 +7,6 @@ namespace Core.StateMachine.Boss
 {
     public class BossStateMachine : MonoBehaviour
     {
-        [field: SerializeField] public HeroStateMachine HeroStateMachine { get; private set; }
-        [field: SerializeField] public BossAnimations Animations { get; private set; }
         [field: SerializeField] public LookAtTarget LookAtTarget { get; private set; }
         [field: SerializeField] public MeshRenderer Cone { get; private set; }
         [field: SerializeField] public MeshRenderer Circle { get; private set; }
@@ -23,11 +21,20 @@ namespace Core.StateMachine.Boss
         private BossLandingState _landingState = new BossLandingState();
         private BossConeState _coneState = new BossConeState();
         private BossMagnetismState _magnetismState = new BossMagnetismState();
+        
+        public HeroStateMachine HeroStateMachine { get; private set; }
+        public BossAnimations Animations { get; private set; }
 
         private float _timer;
 
         #region Execution
 
+        public void Construct(BossAnimations bossAnimations, HeroStateMachine heroStateMachine)
+        {
+            HeroStateMachine = heroStateMachine;
+            Animations = bossAnimations;
+        }
+        
         private void Start()
         {
             _currentState = _idleState;
@@ -43,6 +50,12 @@ namespace Core.StateMachine.Boss
 
             if (_timer > GameParameters.Instance.UseSkillPeriod)
             {
+                if (_currentState is BossIdleState == false)
+                {
+                    _timer = 0;
+                    return;
+                }
+                
                 var random = Random.Range(0, 3);
 
                 switch (random)
