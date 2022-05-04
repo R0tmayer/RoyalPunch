@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Core.StateMachine.Hero
 {
-    [RequireComponent(typeof(HeroAnimationStates), typeof(CharacterController))]
+    [RequireComponent(typeof(HeroAnimations), typeof(CharacterController))]
     public class HeroStateMachine : MonoBehaviour
     {
         [field: SerializeField] public Transform Hero { get; private set; }
@@ -17,7 +17,7 @@ namespace Core.StateMachine.Hero
 
         
         public CharacterController CharacterController { get; private set; }
-        public HeroAnimationStates Animations { get; private set; }
+        public HeroAnimations Animations { get; private set; }
         private BossAnimations BossAnimations { get; set; }
         
         public InputJoystickReceiver Input { get; private set; }
@@ -36,7 +36,7 @@ namespace Core.StateMachine.Hero
 
         private void Awake()
         {
-            Animations = GetComponent<HeroAnimationStates>();
+            Animations = GetComponent<HeroAnimations>();
             CharacterController = GetComponent<CharacterController>();
         }
 

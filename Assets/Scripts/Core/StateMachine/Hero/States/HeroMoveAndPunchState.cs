@@ -5,7 +5,7 @@ namespace Core.StateMachine.Hero.States
 {
     public class HeroMoveAndPunchState : HeroBaseState
     {
-        private HeroAnimationStates _animations;
+        private HeroAnimations _animations;
 
         public override void EnterState(HeroStateMachine stateMachine)
         {

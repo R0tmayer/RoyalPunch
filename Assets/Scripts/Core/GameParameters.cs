@@ -15,7 +15,7 @@ namespace Core
         [field: SerializeField] public float RagdollSleepTime { get; private set;}
         [field: SerializeField] public float PushForce { get; private set;}
         [field: SerializeField] public float UseSkillPeriod { get; private set;}
-        [field: SerializeField] public float StandUpLeprRate { get; private set;}
+        [field: SerializeField] public float StandUpLerpRate { get; private set;}
 
         private void Awake()
         {
